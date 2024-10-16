@@ -1,10 +1,24 @@
-import React from "react";
-import {mount} from "marketing/MarketingApp";
-import MarketingApp from "./components/MarketingApp";
+import React, { lazy, Suspense } from "react";
+import Header from "./components/Header";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-console.log(mount);
+const MarketingApp = lazy(() => import("./components/MarketingApp"));
+const AuthApp = lazy(() => import("./components/AuthApp"));
 
 export default function App() {
-  return <div><MarketingApp /> </div>
-  
+  const [isSignIn, setIsSignIn] = useState(false);
+
+  return (
+    <div>
+      <BrowserRouter>
+        <Header />
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route path='/auth' component={AuthApp} />
+            <Route path='/' component={MarketingApp} />
+          </Switch>
+        </Suspense>
+      </BrowserRouter>
+    </div>
+  );
 }
