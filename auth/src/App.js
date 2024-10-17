@@ -3,7 +3,7 @@ import {  Router, Route, Switch } from "react-router-dom";
 
 import { StylesProvider } from "@material-ui/core/styles";
 import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
+import SignUp from './components/Signup';
 
 export default function App( { history , onSignIn} ) {
   return (
